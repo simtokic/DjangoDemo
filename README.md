@@ -8,15 +8,15 @@ You can find these instructions at [documentation](https://github.com/simtokic/D
 
 ### Prerequisites
 
-You can find these instructions at documentation folder.
+You can find these instructions at [documentation](https://github.com/simtokic/DjangoDemo/tree/master/documentation) folder.
 
 ### Installing
 
-You can find these instructions at documentation folder.
+You can find these instructions at [documentation](https://github.com/simtokic/DjangoDemo/tree/master/documentation) folder.
 
 ## Running the tests
 
-There are currently no tests available (no written tests).
+Currently, there are no tests available (no written tests).
 
 ## Deployment
 
