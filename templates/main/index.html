@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Django Demo - Home{% endblock %}
+
+{% block content %}
+<section class="content-header">
+	<h1>Home</h1>
+</section>
+
+<section class="content">
+	
+	<div class="row">
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+              <div class="info-box-content">
+                  <span class="info-box-text">Total Users</span>
+                  <span class="info-box-number">{{ users_count }}</span>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-aqua"><i class="fa fa-envelope"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Total Messages</span>
+                    <span class="info-box-number">{{ messages_count }}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix visible-sm-block"></div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-red"><i class="ion ion-edit"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Total Tasks</span>
+                    <span class="info-box-number">{{ tasks_count }}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+        	<div class="info-box">
+            	<span class="info-box-icon bg-green"><i class="fa fa-check"></i></span>
+            	<div class="info-box-content">
+              		<span class="info-box-text">Completed Tasks</span>
+              		<span class="info-box-number">{{ tasks_completed_count.count }}</span>
+            	</div>
+          	</div>
+        </div>
+
+    </div>
+
+</section>
+{% endblock %}

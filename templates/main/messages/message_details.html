@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Django Demo - Message details{% endblock %}
+
+{% block content %}
+<section class="content-header text-center">
+    <h1>Message details</h1>
+</section>
+
+<section class="content">
+
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{{ message.subject }}</h3>
+                    <br><br>
+                    {% if inbox %}
+                        <p><strong>From:</strong> {{ message.user_from }}</p>
+                    {% else %}
+                        <p><strong>To:</strong> {{ message.user_to }}</p>
+                    {% endif %}
+                    <p>{{ message.body }}</p>
+                    <br><br>
+                    <p>{{ message.time_created }}</p>
+                </div>
+                <div class="box-footer">
+                    {% if inbox %}
+                        <a href="{% url 'inbox-messages' %}" class="btn btn-default">Back</a>
+                    {% else %}
+                        <a href="{% url 'sent-messages' %}" class="btn btn-default">Back</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

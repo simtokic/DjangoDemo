@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% load tags %}
+
+{% block title %}Django Demo - Inbox{% endblock %}
+
+{% block content %}
+<section class="content-header">
+    <h1>Messages</h1>
+</section>
+
+<section class="content">
+    
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Inbox</h3>
+                </div>
+
+                <div class="box-body no-padding">
+                    <table class="table table-striped table-hover-custom">
+                        <tbody>
+                            {% if object_list %}
+                                <tr>
+                                    <th>From</th>
+                                    <th>Subject</th>
+                                    <th>Body</th>
+                                    <th>Date</th>
+                                    <th class="text-center">Details</th>
+                                </tr>
+                                {% for message in object_list %}
+                                    <tr class="{% text_weight_class message.read %}">
+                                        <td>{{ message.user_from }}</td>
+                                        <td>{{ message.subject }}</td>
+                                        <td>{{ message.body }}</td>
+                                        <td>{{ message.time_created|date:"M d, Y" }}</td>
+                                        <td class="text-center">
+                                            <a href="{% url 'message-details' pk=message.id %}">
+                                                {% if message.read %}
+                                                    <i class="fa fa-envelope-open-o"></i>
+                                                {% else %}
+                                                    <i class="fa fa-envelope"></i>
+                                                {% endif%}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <td>There are currently no messages.</td>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="box-footer clearfix">
+                    <a href="{% url 'create-message' %}" class="btn btn-sm btn-info btn-flat pull-left">Compose</a>
+                    {% include "../misc/pagination.html" %}
+                </div>
+            </div>
+        </div>
+    </div> 
+</section>
+{% endblock %}

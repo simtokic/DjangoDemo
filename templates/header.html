@@ -1,0 +1,127 @@
+{% load static %}
+
+{% load tags %}
+
+<header class="main-header">
+
+    <a href="{% url 'home' %}" class="logo">
+        <span class="logo-mini"><b>D</b>U</span>
+        <span class="logo-lg"><b>Django</b>Demo</span>
+    </a>
+
+    <nav class="navbar navbar-static-top">
+
+        {% if user.is_authenticated %}
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+
+                    <li class="dropdown messages-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-envelope-o"></i>
+                            <span class="label label-success">{{ my_messages.count }}</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">You have {{ my_messages.count }} messages</li>
+                            <li>
+                                <ul class="menu">
+                                    {% for message in my_messages %}
+                                        <li>
+                                            <a href="{% url 'message-details' pk=message.id %}">
+                                                <div class="pull-left">
+                                                    {% if message.user_from.userprofile.photo %}
+                                                        <img src="{{ message.user_from.userprofile.photo.url }}"class="img-circle" alt="User Image">
+                                                    {% else %}
+                                                        <img src="{% static "img/user2-160x160.jpg" %}" class="img-circle" alt="User Image">
+                                                    {% endif %}
+                                                </div>
+                                                <h4>
+                                                    {{ message.subject }}
+                                                    <small><i class="fa fa-clock-o"></i> {{ message.time_created|date:"M d, Y" }}</small>
+                                                </h4>
+                                                <p>{{ message.body }}</p>
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                            <li class="footer"><a href="{% url 'inbox-messages' %}">See All Messages</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown tasks-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-flag-o"></i>
+                            <span class="label label-danger">{{ my_tasks.count }}</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">You have {{ my_tasks.count }} tasks</li>
+                            <li>
+                                <ul class="menu">
+                                    {% for task in my_tasks %}
+                                        <li>
+                                            <a href="{% url 'edit-task' pk=task.id %}">
+                                                <h3>
+                                                    {{ task.name }}
+                                                    <small class="pull-right">{{ task.progress }}%</small>
+                                                </h3>
+                                                <div class="progress xs">
+                                                    <div class="progress-bar {% progress_color_class task.progress %}" style="width: {{ task.progress }}%" role="progressbar" aria-valuenow="{{ task.progress }}" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="sr-only">{{ task.progress }}% Complete</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                            <li class="footer">
+                                <a href="{% url 'tasks' %}">View all tasks</a>
+                            </li>
+                        </ul>
+                    </li>
+     
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            {% if user.userprofile.photo %}
+                                <img src="{{ user.userprofile.photo.url }}" class="user-image" class="img-circle" alt="User Image" style="width:25px;height:25px;">
+                            {% else %}
+                                <img src="{% static "img/user2-160x160.jpg" %}" class="user-image" alt="User Image">
+                            {% endif %}
+                            <span class="hidden-xs">
+                                {{ user.get_full_name|default:user.username }}
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="user-header">
+                                {% if user.userprofile.photo %}
+                                    <img src="{{ user.userprofile.photo.url }}"  class="img-circle" alt="User Image" style="width:90px;height:90px;">
+                                {% else %}
+                                    <img src="{% static "img/user2-160x160.jpg" %}" class="img-circle" alt="User Image">
+                                {% endif %}
+                                <p>
+                                    {{ user.get_full_name|default:user.username }}
+                                    <small>Member since {{ user.date_joined|date:"M. Y" }}</small>
+                                </p>
+                            </li>
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="{% url 'profile' %}" class="btn btn-default btn-flat">Profile</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="{% url 'logout' %}?next=/" class="btn btn-default btn-flat">Logout</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        {% endif %}
+    </nav>
+</header>

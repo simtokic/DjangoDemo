@@ -1,0 +1,23 @@
+.errorlist {
+	padding: 0;
+    margin-top: 10px;
+	list-style: none;
+	color: #D8000C;;
+}
+
+.errorlist.nonfield {
+	padding-left: 40px;
+}
+
+table th {
+	color: #3c8dbc;
+}
+
+.text-bold-600 {
+	font-weight: 600;
+}
+
+.table-hover-custom > tbody > tr:hover td {
+    background-color: #ededed;
+    cursor: pointer;
+}

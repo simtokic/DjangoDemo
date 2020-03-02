@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+
+{% block title %}Django Demo - New task{% endblock %}
+
+{% block content %}
+<section class="content-header text-center">
+    <h1>New task</h1>
+</section>
+
+<section class="content">
+
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Create task</h3>
+                </div>
+                <form role="form" method="post">
+                    {% csrf_token %}
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="id_name">{{ form.name.label }}</label>
+                            {{ form.name|add_class:'form-control' }}
+                            {{ form.name.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_description">{{ form.description.label }}</label>
+                            {{ form.description|add_class:'form-control' }}
+                            {{ form.description.errors }}
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <a href="{% url 'tasks' %}" class="btn btn-default">Back</a>
+                        <button type="submit" class="btn btn-success">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

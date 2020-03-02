@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+
+{% block title %}Django Demo - User profile{% endblock %}
+
+{% block content %}
+<section class="content-header text-center">
+    <h1>User profile</h1>
+</section>
+
+<section class="content">
+
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Update profile</h3>
+                </div>
+                <form role="form" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="id_first_name">{{ user_form.first_name.label }}</label>
+                            {{ user_form.first_name|add_class:'form-control' }}
+                            {{ user_form.first_name.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_last_name">{{ user_form.last_name.label }}</label>
+                            {{ user_form.last_name|add_class:'form-control' }}
+                            {{ user_form.last_name.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_email">{{ user_form.email.label }}</label>
+                            {{ user_form.email|add_class:'form-control' }}
+                            {{ user_form.email.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_photo">{{ profile_form.photo.label }}</label>
+                            {{ profile_form.photo|add_class:'form-control' }}
+                            {{ profile_form.photo.errors }}
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <a href="{% url 'home' %}" class="btn btn-default">Back</a>
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
