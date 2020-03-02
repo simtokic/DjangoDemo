@@ -1,6 +1,7 @@
 # DjangoDemo
 
 This project serves as a demonstration of Django Web framework.
+
 [Demo](https://django-universal.tehcon.com.hr/) (**User**: demo, **Password**: tryit136)
 
 ## Getting Started
